@@ -112,10 +112,4 @@ El dígito obtenido se guarda en la variable `hexadecimal`, manteniendo el mismo
 
 ---
 
-## ✅ Notas finales
-
-- El programa utiliza el método matemático de **divisiones sucesivas**.
-- No se utilizan funciones integradas de Python para convertir bases.
-- Todo el proceso se realiza de forma manual usando ciclos `while`.
-- El código corresponde a un ejercicio de **Introducción a la Programación**.
 
