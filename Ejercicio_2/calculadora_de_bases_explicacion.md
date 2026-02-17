@@ -111,5 +111,5 @@ Primero se obtiene el residuo con `residuo = n % 16`. Posteriormente, este resid
 El dígito obtenido se guarda en la variable `hexadecimal`, manteniendo el mismo orden que en las otras bases, dejando el primer residuo como el último dígito. Finalmente, se muestra el resultado en pantalla.
 
 ---
-
+![Entorno virtual activo](/Ejercicio_2/assets/sis.jpg)
 
