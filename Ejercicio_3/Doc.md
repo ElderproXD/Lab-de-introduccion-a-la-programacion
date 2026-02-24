@@ -15,53 +15,64 @@ Primero se pregunta a terminal, cual es el usuario, después se checa si en su c
 ```python
 import sys
 
-# Datos correctos
-USER_DB = "admin"
-PASS_DB = "Admin2026"
 
-intentos = 0
+Usuario = "admin"
+Contraseña = "Admin2026"
+intento = 0
 
-while intentos < 3:
-    print(f"\n--- INTENTO {intentos + 1} DE 3 ---")
-    
-    # --- BLOQUE DE USUARIO ---
-    user = input("Usuario: ")
-    
-    # Verificación inmediata del usuario
-    if chr(32) in user or user == "":
-        print("Error: El usuario no puede tener espacios ni estar vacío.")
-        intentos += 1
-        if intentos == 3: break # Si falla 3 veces aquí, rompe el ciclo
-        continue # Si no, vuelve a pedir el intento desde el inicio
+while intento < 3:
 
-    # --- BLOQUE DE CONTRASEÑA ---
-    password = input("Contraseña: ")
-    
-    # Verificación inmediata de la contraseña (ASCII)
-    tiene_letra = False
-    tiene_num = False
-    for c in password:
-        if (ord(c) >= 65 and ord(c) <= 122): tiene_letra = True
-        if (ord(c) >= 48 and ord(c) <= 57): tiene_num = True
+   print(f"\n INTENTO {intento + 1} DE 3 ")
+   user = input("Usuario :  ")
 
-    if len(password) < 8 or not tiene_letra or not tiene_num:
-        print("Error: La contraseña debe tener 8+ caracteres, letras y números.")
-        intentos += 1
-        continue
+   if user == "":
+      print(" No pusiste nada w ")
+      intento += 1
+      if intento == 3: break
+      continue
 
-    # --- VERIFICACIÓN FINAL ---
-    if user == USER_DB and password == PASS_DB:
-        print("\n¡Acceso concedido! Bienvenido.")
-        break
-    else:
-        print("Credenciales incorrectas.")
-        intentos += 1
+   if chr(32) in user:
+      print(" No quiero espacio jeje")
+      intento += 1
+      if intento == 3: break
+      continue
 
-# Cierre por seguridad
-if intentos == 3:
-    print("\nHas agotado tus intentos. El sistema se cerrará.")
-    sys.exit()
+   passw = input("Contraseña:  ")
 
-# Menú Principal
-print("Cargando Menú del Kiosco...")
+   letra = False
+   numero = False
+
+   for c in passw:
+      if (ord(c) >= 65 and ord(c) <= 122): letra=True
+      if (ord(c) >= 48 and ord(c) <= 57): numero=True
+
+   if len(passw) < 8 : 
+      print("Imposible procesar, nimodo (ta corta )")
+      intento += 1
+      continue
+   if not letra:
+      print(" Te falta poner letras w")
+      intento += 1
+      continue
+   if not numero:
+      print(" Te falta poner numeros w")
+      intento += 1
+      continue
+
+   if user == Usuario and passw == Contraseña:
+      print("ACCESO CONCEDIDO FELIcIDAdES JAJAJAJAJAJJQAJAJAJAJAJAJAJAJAJAJAJAJAJA ")
+      print("Bienvenido a Loquendo City") 
+      break
+   else:
+      print("no")
+      intento += 1
+
+      
+
+   
+
+   if intento == 3:
+      print ("Ya no hijo, no te creo (te pasaste de intentos)")
+      sys.exit()
+
 ```
