@@ -76,3 +76,4 @@ while intento < 3:
       sys.exit()
 
 ```
+![Entorno virtual activo](/Ejercicio_2/assets/soo.jpg)
