@@ -124,7 +124,7 @@ def e13():
             print(texto)
 
 
-def main():
+
       while True:
             print("\n" + "="*40)
             print("MENU DE EJERCICIOS")
@@ -183,5 +183,3 @@ def main():
             input("\nPresiona Enter para volver al menú...")
 
 
-if __name__ == "__main__":
-      main()
