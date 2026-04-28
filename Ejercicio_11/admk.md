@@ -44,7 +44,7 @@ El sistema utiliza una ruta principal que maneja métodos GET y POST:
 - Si no, se muestra un error
 
 
-/Ejercicio_11/inicio.png
+![Entorno virtual activo](/Ejercicio_11/A/inicio.png)
 
 ---
 
@@ -55,7 +55,7 @@ Una vez autenticado, el usuario accede a un panel principal con diferentes funci
 Estas tarjetas permiten navegar dentro del sistema, destacando el acceso al escáner móvil.
 
 
-/Ejercicio_11/A/tarjetassss.png
+![Entorno virtual activo](/Ejercicio_11/A/tarjetassss.png)
 
 ---
 
@@ -75,8 +75,9 @@ El sistema integra un escáner utilizando JavaScript y la librería html5-qrcode
 - Detecta códigos QR en tiempo real
 - Procesa el contenido escaneado
 
-📸 Evidencia:
-/Ejercicio_11/A/interfazescan.png
+
+![Entorno virtual activo](/Ejercicio_11/A/interfazescan.png)
+
 
 ---
 
@@ -92,7 +93,7 @@ Si es un enlace:
 - Permite vista previa
 
 
-/Ejercicio_11/A/link.png
+![Entorno virtual activo](/Ejercicio_11/A/link.png)
 
 ---
 
@@ -112,7 +113,7 @@ Esto evita redirecciones peligrosas y mantiene al usuario dentro del sistema.
 Si el código no es un enlace, simplemente se muestra el contenido escaneado:
 
 📸 Evidencia:
-/Ejercicio_11/A/escaneobarras.png
+![Entorno virtual activo](/Ejercicio_11/A/escaneobarras.png)
 
 ---
 
