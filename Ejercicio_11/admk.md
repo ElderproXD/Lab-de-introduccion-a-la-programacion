@@ -43,8 +43,8 @@ El sistema utiliza una ruta principal que maneja métodos GET y POST:
 - Si son correctas, se guarda la sesión
 - Si no, se muestra un error
 
-📸 Evidencia:
-https://raw.githubusercontent.com/ElderproXD/Lab-de-introduccion-a-la-programacion/main/Ejercicio_11/A/inicio.png
+
+/Ejercicio_11/inicio.png
 
 ---
 
@@ -54,8 +54,8 @@ Una vez autenticado, el usuario accede a un panel principal con diferentes funci
 
 Estas tarjetas permiten navegar dentro del sistema, destacando el acceso al escáner móvil.
 
-📸 Evidencia:
-https://raw.githubusercontent.com/ElderproXD/Lab-de-introduccion-a-la-programacion/main/Ejercicio_11/A/tarjetassss.png
+
+/Ejercicio_11/A/tarjetassss.png
 
 ---
 
@@ -76,7 +76,7 @@ El sistema integra un escáner utilizando JavaScript y la librería html5-qrcode
 - Procesa el contenido escaneado
 
 📸 Evidencia:
-https://raw.githubusercontent.com/ElderproXD/Lab-de-introduccion-a-la-programacion/main/Ejercicio_11/A/interfazescan.png
+/Ejercicio_11/A/interfazescan.png
 
 ---
 
@@ -91,8 +91,8 @@ Si es un enlace:
 - Muestra advertencia de seguridad
 - Permite vista previa
 
-📸 Evidencia:
-https://raw.githubusercontent.com/ElderproXD/Lab-de-introduccion-a-la-programacion/main/Ejercicio_11/A/link.png
+
+/Ejercicio_11/A/link.png
 
 ---
 
@@ -103,9 +103,7 @@ Se utiliza un iframe para mostrar el contenido:
     iframe.src = url;
 
 Esto evita redirecciones peligrosas y mantiene al usuario dentro del sistema.
-
-📸 Evidencia:
-https://raw.githubusercontent.com/ElderproXD/Lab-de-introduccion-a-la-programacion/main/Ejercicio_11/A/vitsa.png
+/Ejercicio_11/A/vitsa.png
 
 ---
 
@@ -114,7 +112,7 @@ https://raw.githubusercontent.com/ElderproXD/Lab-de-introduccion-a-la-programaci
 Si el código no es un enlace, simplemente se muestra el contenido escaneado:
 
 📸 Evidencia:
-https://raw.githubusercontent.com/ElderproXD/Lab-de-introduccion-a-la-programacion/main/Ejercicio_11/A/escaneobarras.png
+/Ejercicio_11/A/escaneobarras.png
 
 ---
 
