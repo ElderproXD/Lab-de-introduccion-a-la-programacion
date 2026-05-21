@@ -1,0 +1,317 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 0;
+    /* Evita que el desenfoque cree bordes blancos en las orillas */
+    overflow-x: hidden; 
+    color: white;
+}
+
+body::before {
+    content: "";
+    position: fixed; /* Se queda quieta aunque hagas scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Aquí va tu imagen */
+    background-image: url('../assets/fondo2.jpg');
+    background-size: cover;
+    background-position: center;
+    
+    filter: blur(3px) brightness(0.7); /* Ajusta los px para más o menos desenfoque */
+    
+    /* IMPORTANTE: Manda la imagen al fondo de todo */
+    z-index: -1;
+    color: white;
+}
+    /* Opcional: Si quieres que la imagen se vea un poco más oscura */
+
+
+
+/* Contenedor padre para separar menú de contenido */
+.layout {
+    display: flex;
+    height: 100vh;
+}
+
+/* Estilo del Menú Vertical */
+.sidebar {
+    width: 250px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid white;
+    background-color: #1a4ec993;
+    animation: panel ease-out 1.5s;
+
+}
+
+.sidebar .logo {
+    font-weight: 800;
+    font-size: 1.4rem;
+    margin-bottom: 30px;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    margin-bottom: 15px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    display: block;
+    padding: 10px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+.border{
+    border: 1px solid white;
+    
+}
+.sidebar a {
+text-decoration: none;
+    color: #ffffff;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+.animacion:hover{
+       background: #ffffff;
+    color: rgb(0, 0, 0);
+    padding-left: 20px;
+
+}
+
+/* Área de trabajo a la derecha */
+.main-content {
+    flex-grow: 1; /* Ocupa todo el espacio restante */
+    padding: 40px;
+    overflow-y: auto; /* Por si hay muchas habitaciones y hay que hacer scroll */
+        text-shadow: 
+        -1px -1px 0 #000,  /* Arriba-Izquierda */
+         1px -1px 0 #000,  /* Arriba-Derecha */
+        -1px  1px 0 #000,  /* Abajo-Izquierda */
+         1px  1px 0 #000;  
+}
+.main-content h1{
+    margin-left: 20vw;
+    margin-bottom: 5px;
+    margin-top: -15px;
+    animation: habitacion ease-out 2s;
+}
+@keyframes habitacion{
+    0%{
+        opacity: 0;
+        filter: blur(10px);
+        transform: translateX(-10px);
+    }100%{
+        opacity: 1;
+        filter: blur(0);
+        transform: translateX(0);
+    }
+}
+
+#contenedor-dinamico {
+
+    background: rgb(255, 255, 255, 0.2) ;
+    min-height: 500px;
+    width: 55vw;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 10px;
+    animation: habitaciones ease-out 1s;
+        display: grid;
+    /* Esto crea columnas automáticas que se ajustan al ancho de la pantalla */
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 25px;
+    padding: 20px;
+    max-height: 500px; /* Ajusta según el tamaño de tu #border */
+    overflow-y: auto;  /* Por si tienes muchas habitaciones, que puedas hacer scroll */
+}
+/* habitaciones css con la base de datos */
+/* 1. Contenedor de las tarjetas (Panel Central) */
+
+
+/* 2. Estilo base de cada tarjeta */
+.tarjeta-habitacion {
+    background: transparent;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+    border: 1px solid #ccc; /* Borde gris por defecto */
+    width: 12vw;
+    height: 35vh;
+    box-sizing: border-box;
+    padding: auto;
+}
+
+
+
+/* 3. Colores dinámicos según el estatus */
+/* IMPORTANTE: Los nombres deben ser en minúsculas porque usamos |lower en el HTML */
+
+.tarjeta-habitacion.disponible {
+    border-color: #ffffff; /* Verde */
+}
+
+.tarjeta-habitacion.ocupada {
+    border-color: #ffffff; /* Rojo */
+}
+
+.tarjeta-habitacion.limpieza {
+    border-color: #ffffff; /* Amarillo */
+}
+
+/* 4. Elementos internos de la tarjeta */
+.numero-hab {
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-bottom: 10px;
+    text-shadow: none;
+
+    
+}
+
+.tarjeta-habitacion img {
+    width: 12vw;
+    height: 20vh;
+    margin: none;
+}
+
+.tipo-texto {
+    font-size: 1rem;
+    color: #ffffff;
+    text-align: center;
+    margin-left: 30px;
+    display: flex;
+}
+
+.estado-texto {
+    font-size: 0.8rem;
+    margin-top: 5px;
+    font-style: italic;
+    text-transform: uppercase;
+}
+.botones{
+    background-color: rgb(255, 255, 255, 0.1);
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    right: 0px;
+    top: 40px;
+    width: 20vw;
+    margin: 10px;
+    height: 90%;
+    padding: 10px;
+    border: 2px solid white;
+    border-radius: 10px;
+     animation: panel-derecho ease-out 1s;
+
+}
+.habitaciones{
+ box-sizing: border-box;
+}
+.lista-habitaciones {
+    list-style: none; /* Quita los puntitos negros de la lista */
+    padding: 0;
+}
+
+.lista-habitaciones li {
+    display: flex;      /* Pone la imagen y el texto en la misma línea */
+    align-items: center; /* Centra la imagen verticalmente con el texto */
+    margin-bottom: 15px; /* Espacio entre cada renglón */
+}
+
+.icono-cuarto {
+    /* CONTROL DE TAMAÑO */
+    width: 9vw;   /* Ajusta el ancho a tu gusto */
+    height: auto;  /* Mantiene la proporción para que no se vea aplastada */
+    transform: translateX(-15px);
+}
+.icono-cuarto3 {
+    /* CONTROL DE TAMAÑO */
+    width: 8.5vw;   /* Ajusta el ancho a tu gusto */
+    height: auto;  /* Mantiene la proporción para que no se vea aplastada */
+    transform: translateX(-10px);
+    margin-right: 20px;
+}
+.icono-cuarto2 {
+    /* CONTROL DE TAMAÑO */
+    width: 9.5vw;   /* Ajusta el ancho a tu gusto */
+    height: auto;  /* Mantiene la proporción para que no se vea aplastada */
+    transform: translateX(-19px);
+    margin-right: 10px;
+}
+p{
+    text-shadow: none;
+    font-size: 1.2rem;
+    font-weight: 800;
+    transform: translateX(-20px);
+}
+.a-botones{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+button{
+    color:black;
+    background-color:#1a4ec998;
+    width: 18vw;
+    height: 8vh;
+    border-radius: 3px;
+    margin-top: 20px;
+    border: 1px solid rgb(255, 255, 255);
+    cursor: pointer;
+}
+button:hover{
+    transition: all 0.3s ease;
+    transform: translateY(-7px);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.9);
+}
+@keyframes panel{
+    0%{
+        opacity: 0;
+        transform: translateX(-80px);
+    }100%{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+@keyframes habitaciones{
+    0%{
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes panel-derecho{
+    0%{
+        opacity: 0;
+        transform: translateX(80px);
+    }100%{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+

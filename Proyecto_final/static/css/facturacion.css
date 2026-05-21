@@ -1,0 +1,183 @@
+/*Contenedor principal para todoo*/
+#contenedor-dinamico-reservaciones {
+
+    background: rgb(255, 255, 255, 0.2) ;
+    min-height: 500px;
+    width: 75vw;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 30px;
+    animation: habitaciones ease-out 1s;
+}
+.main-content-reservaciones{
+    flex-grow: 1; /* Ocupa todo el espacio restante */
+    padding: 40px;
+    overflow-y: auto; /* Por si hay muchas habitaciones y hay que hacer scroll */
+        text-shadow: 
+        -1px -1px 0 #000,  /* Arriba-Izquierda */
+         1px -1px 0 #000,  /* Arriba-Derecha */
+        -1px  1px 0 #000,  /* Abajo-Izquierda */
+         1px  1px 0 #000;  
+}
+.main-content-reservaciones h1{
+        margin-left: 28vw;
+    margin-bottom: 5px;
+    margin-top: -15px;
+    animation: habitacion ease-out 2s;
+
+}
+.seccion-busqueda2{
+    display: flex;
+    margin-top: -10px;
+    justify-content: center;
+    align-items: center;
+    
+}
+.seccion-busqueda2 input{
+    background-color: rgba(255, 255, 255, 0.596);
+    border: 1px solid white;
+    width: 50vw;
+    height: 6vh;
+    margin: 0;
+    border-radius: 20px !important;
+    padding-left: 50px;
+    color: rgb(0, 0, 0);
+    margin-right: 10px;
+
+}
+.seccion-busqueda2 button{
+    background-color: #0056b3;
+    border: 1px solid white;
+    width: 16vw;
+    height: 6vh;
+    margin: 0;
+    border-radius: 10px;
+    padding-left: 50px;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    color: white;
+
+}
+.seccion-busqueda2 button:hover{
+    color: black;
+    background-color: white;
+    transition: 1s;
+    transform: none !important;
+    border: 1px solid black;
+}
+
+.seccion-busqueda2 p{
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+input:focus{
+    outline: none; /*quite estilo de la linea de inputs */
+}
+.interfaz-facturacion{ /* Hacer dos columnas */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    margin-top: 10px;
+}
+.columna {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* 5. Estilo de los encabezados azules */
+.header-azul {
+    background-color: #0047FF;
+    color: white;
+    text-align: center;
+    border-radius: 50px; /* Muy redondeado como en tu foto */
+    font-weight: bold;
+    font-size: 1rem;
+    text-shadow: none !important;
+    width: 20vw;
+    margin-left: 100px;
+    margin-top: 10px;
+    height: 7vh;
+    padding-top: 9px;
+    
+}
+
+/* 6. Inputs y Labels */
+.campo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.campo-fila {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+label {
+    font-weight: bold;
+    white-space: nowrap;
+    text-shadow: none;
+}
+
+input[type="text"], input[type="number"] {
+    background: rgb(255, 255, 255);
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    color: #333;
+    text-align: center;
+}
+
+/* Tamaños de inputs */
+.input-corto { width: 100px; }
+.input-mini { width: 50px; }
+.input-medio { width: 200px; }
+.input-mini2 {width: 80px;}
+input[value] { color: #000; } /* Resaltar texto si ya tiene datos */
+
+/* 7. Botones */
+
+.btn-finalizar {
+    background-color: #1a4ec993;
+    color: #ffffff;
+    border: 1px solid black;
+    padding: 15px 25px; /* Más espacio a los lados para que quepa el texto */
+    border-radius: 8px; /* Más redondeado para que se vea moderno */
+    font-weight: 400;
+    cursor: pointer;
+    font-size: 0.9rem; /* Un poco más grande */
+    margin-top: 70px;
+    margin-left: 100px !important;
+    width: 1vw !important;
+        
+    /* Centrado del texto */
+    display: flex;
+    flex-direction: column; /* Para que el texto se apile si es necesario */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    /* Posicionamiento */
+    margin-left: auto;
+    margin-right: auto; /* Esto lo centra sin usar translateX */
+    
+    width: fit-content; /* IMPORTANTE: Hace que el botón crezca según el texto */
+    min-width: 250px;   /* Asegura un tamaño mínimo */
+}
+
+.btn-finalizar:hover {
+    background-color: #f0f0f0;
+    color: #000000;
+    /* Quitamos el transform de aquí para que no salte al pasar el mouse */
+}
+
+/* Para el texto de abajo (si usas un <p> o un <span>) */
+.btn-finalizar p {
+    font-size: 0.8rem;
+    margin: 0; /* Quita el espacio extra que traen los párrafos */
+    padding-top: 5px;
+    text-transform: uppercase;
+}

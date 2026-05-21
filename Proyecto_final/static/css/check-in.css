@@ -1,0 +1,132 @@
+/*Reservaciones codigo */
+
+
+#contenedor-dinamico-reservaciones {
+
+    background: rgb(255, 255, 255, 0.2) ;
+    min-height: 500px;
+    width: 75vw;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 30px;
+    animation: habitaciones ease-out 1s;
+}
+.main-content-reservaciones{
+    flex-grow: 1; /* Ocupa todo el espacio restante */
+    padding: 40px;
+    overflow-y: auto; /* Por si hay muchas habitaciones y hay que hacer scroll */
+        text-shadow: 
+        -1px -1px 0 #000,  /* Arriba-Izquierda */
+         1px -1px 0 #000,  /* Arriba-Derecha */
+        -1px  1px 0 #000,  /* Abajo-Izquierda */
+         1px  1px 0 #000;  
+}
+.main-content-reservaciones h1{
+        margin-left: 28vw;
+    margin-bottom: 5px;
+    margin-top: -15px;
+    animation: habitacion ease-out 2s;
+
+}
+/* Contenedor principal del formulario (Fondo oscuro) */
+
+
+/* Títulos de las secciones (Cápsulas azules) */
+.formulario-reservacion h3 {
+    background-color: #0056b3;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    display: inline-block;
+    font-size: 15px;
+    margin-bottom: 10px;
+    text-shadow: none;
+}
+
+/* Estilo para los campos de entrada */
+input, select {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ffffff;
+    background-color: white;
+    font-size: 16px;
+    margin: 5px;
+    width: calc(25% - 20px); /* Ajusta para que quepan 4 en una fila */
+    margin-bottom: 20px;
+}
+
+/* Etiquetas de fecha y tipo */
+label {
+    display: block;
+    font-size: 12px;
+    color: #4da3ff;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* El botón blanco de "NUEVA RESERVA" */
+.btn-reserva {
+    background-color: white;
+    color: #333;
+    padding: 15px 40px;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    float: right; /* Lo manda a la derecha como en tu dibujo */
+    transition: 0.3s;
+}
+.contenedor-boton{
+    background-color: red;
+    transform: translateY(-70px) !important;
+    margin-right: 30px;
+
+}
+.btn-reserva:hover {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+}
+/* El contenedor que obliga a los hijos a ponerse en fila */
+.seccion-estancia {
+    display: flex;           /* Pone los elementos en horizontal */
+    flex-direction: row;     /* Refuerza que sea una fila */
+    gap: 15px;               /* Espacio entre cada cuadro */
+    width: 100%;             /* Usa todo el ancho */
+    align-items: flex-end;   /* Alinea los cuadros por la base */
+}
+
+/* Cada bloque (Label + Input) */
+.campo {
+    display: flex;
+    flex-direction: column;  /* El label se queda arriba del input */
+    flex: 1;                 /* Los tres se reparten el ancho igual */
+}
+
+.campo input, 
+.campo select {
+    width: 85%;            
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: white;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* Los letreros azules de FECHA DE ENTRADA, etc. */
+.campo label {
+    background-color: #0056b3;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-size: 12px;
+    width: fit-content;      /* El azul solo envuelve el texto */
+    margin-bottom: 8px;
+    text-shadow: none;
+    margin-left:7px ;
+    margin-top: 10px;
+}
+.seccion-habitacion select{
+    width: 30vw;
+    margin-left: 10px;
+}
+

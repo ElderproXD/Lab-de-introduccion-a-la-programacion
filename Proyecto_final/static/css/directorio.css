@@ -1,0 +1,118 @@
+/* Título de la sección */
+.titulo-gestion {
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: sans-serif;
+}
+
+/* Barra de búsqueda azul redondeada */
+.barra-busqueda {
+    background-color: #ffffff3a;
+    border-radius: 40px;
+    display: flex;
+    padding: 10px 25px;
+    align-items: center;
+    margin-bottom: 25px;
+    height: 10vh;
+}
+
+.barra-busqueda input {
+    background-color: transparent;
+    border: none;
+    color: rgb(255, 255, 255);
+    flex-grow: 1;
+    font-size: 1.2rem;
+    outline: none;
+}
+
+.barra-busqueda input::placeholder {
+    color: rgb(255, 255, 255);
+}
+
+.btn-lupa {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transform: translateY(-7px);
+    width: 30px;
+}
+.btn-lupa:hover{
+    box-shadow: none;
+}
+
+/* Contenedor de tabla y botones laterales */
+.cuerpo-gestion {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+/* Estilo de la tabla blanca con bordes azules */
+.tabla-datos {
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    border-collapse: collapse;
+
+}
+
+.tabla-datos th, .tabla-datos td {
+    border: 1px solid #0057b3a2 ;
+    padding: 12px;
+    height: 40px; /* Altura mínima para que no se aplaste vacía */
+    text-shadow: none;
+}
+.tabla-datos th{
+    color: rgb(0, 0, 0);
+    text-shadow: none;
+    
+}
+.tabla-datos td{
+    color: black;
+}
+
+/* Botones de Detalles al lado derecho */
+.columna-acciones {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn-detalles {
+    background-color: white;
+    color: #333;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+.main-content-reservaciones{
+    flex-grow: 1; /* Ocupa todo el espacio restante */
+    padding: 40px;
+    overflow-y: auto; /* Por si hay muchas habitaciones y hay que hacer scroll */
+        text-shadow: 
+        -1px -1px 0 #000,  /* Arriba-Izquierda */
+         1px -1px 0 #000,  /* Arriba-Derecha */
+        -1px  1px 0 #000,  /* Abajo-Izquierda */
+         1px  1px 0 #000;  
+         animation: reservaciones ease-out 1s;
+}
+.main-content-reservaciones h1{
+        margin-left: 25vw;
+    margin-bottom: 5px;
+    margin-top: -15px;
+    animation: habitacion ease-out 2s;
+
+}
+@keyframes reservaciones{
+    0%{
+        opacity: 0;
+        filter: blur(10px);
+
+    }100%{
+        opacity: 1;
+        filter: blur(1);
+    }
+}
