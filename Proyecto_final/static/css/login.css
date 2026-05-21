@@ -1,0 +1,151 @@
+@import url('https://fonts.cdnfonts.com/css/open-sauce-one');
+body {
+    margin: 0;
+    background-image: url("/static/assets/imagen.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+header {
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    font-size: 50px;
+    margin: auto;
+}
+header p{
+    margin: 0;
+    opacity: 0;
+    animation: hotel 2s ease-out 1s forwards;
+}
+/* Esto centra el formulario en la pantalla */
+.parent-container {
+    display: grid;
+    place-items: center;
+    margin-top: 5vh;
+    animation: aparecerLogin 1s ease-out forwards;
+}
+
+/* Esto pone el label arriba y el input abajo */
+.field-group {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+/* Opcional: centra el texto del label y el botón */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+form h2{
+    color: white;
+font-family: 'Poppins', sans-serif;
+font-size: 2rem;
+}
+form label{
+    font-family: 'Open Sauce One', sans-serif;
+    margin-bottom: 2px;
+    font-size: 1rem;
+}
+label[for="password"]{
+    margin-top: 4vh;
+    margin-bottom: 10px;
+}
+label[for="username"]{
+    margin-bottom: 10px;
+}
+form input{
+    background-color: rgb(255, 255, 255);
+    border: 0;
+    border-radius: 20px;
+    height: 7vh;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 20px;
+}
+input[for="password"]{
+    margin-bottom: 100px;
+}
+
+input:focus{
+    outline: none;
+    border: 1px solid #1a4fc9;
+}
+form button{
+    background-color: #1a4fc9;
+    width: 80%;
+    border: 1px;
+    border-radius: 20px;
+    height: 7.5vh;
+    margin-top: 7vh;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.5s ease, box-shadow 0.8s ease;
+}
+button:hover{
+/* Mueve el botón 5px hacia arriba */
+    transform: translateY(-5px);     
+    /* Agrega una sombra para dar efecto de altura */
+    box-shadow: 0 10px 20px rgb(0, 0, 0,0.5);
+}
+button:active{
+    transform: translateY(5px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.estilo-login{
+    background-color: rgb(255, 255, 255, 0.4);
+    filter: blur(0);
+    border: 1px;
+    border-radius: 50px;
+    width: 30vw;
+    height: 70vh;
+}
+.cabeza{
+    background-color: rgb(0, 0, 0,0.4);
+    height: 12vh;
+    display: flex;
+    align-items: center;
+}
+/* 1. Define la animación */
+@keyframes aparecerLogin {
+    0% {
+        opacity: 0;
+        transform: translateY(100px); /* Empieza 100px abajo */
+        filter: blur(20px);           /* Empieza muy borroso */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);      /* Llega a su posición original */
+        filter: blur(0);               /* Se quita lo borroso */
+    }
+}
+@keyframes hotel{
+    0%{
+        opacity: 0;
+        filter: blur(20px);
+        transform: translateX(-100px);
+    }100%{
+        opacity: 1;
+        filter: blur(0);
+        transform: translateX(0);
+    }
+}
+.login-incorrecto{
+    background-color: rgba(255, 0, 0, 0.466);
+    display: flex !important;
+    color: white;
+    width: 80%;
+    margin: top 10px;
+    text-align: center;
+    padding: 5px;
+    z-index: 999 !important;
+    transform: translateY(20px);
+    border-radius: 20px;
+}
