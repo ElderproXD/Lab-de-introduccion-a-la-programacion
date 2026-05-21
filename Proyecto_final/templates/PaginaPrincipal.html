@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Principal</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+</head>
+<body>
+    <div class="layout">
+    <nav class="sidebar">
+        <div class="logo">SISTEMA HOTEL</div>
+        <ul>
+            <li class="border"><a  href="/panel">PANEL PRINCIPAL</a></li> <!--links que escucha el flaks  como hrfe="/panel, etc"-->
+            <li><a class="animacion" href="/checkin">CHECK-IN</a></li>
+            <li><a class="animacion" href="/directorio">DIRECTORIO</a></li>
+            <li><a class="animacion" href="/checkout">CHECK-OUT Y FACTURACIÓN</a></li>
+            <div class="borroso"></div>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <h1>HABITACIONES</h1>
+        <div id="border">
+        <div id="contenedor-dinamico">
+            {% for hab in habitaciones %}
+                <div class="tarjeta-habitacion {{ hab['estatus']|lower }}">
+                    <div class="numero-hab">{{ hab['id'] }}</div>
+                    
+                    {% if hab['estatus'] == 'Disponible' %}
+                        <img src="{{ url_for('static', filename='assets/Disponible.png') }}" alt="Disponible">
+                    {% elif hab['estatus'] == 'Ocupada' %}
+                        <img src="{{ url_for('static', filename='assets/ocupado.png') }}" alt="Ocupada">
+                    {% endif %}
+                    
+                    
+                    <p class="tipo-texto">{{ hab['tipo'] }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+            <div class="botones">
+            <div class="habitaciones">
+<ul class="lista-habitaciones">
+    <li>
+        <img src="static/assets/Disponible.png" alt="Disponible" class="icono-cuarto">
+       <p>DISPONIBLE</p>
+    </li>
+    <li>
+        <img src="static/assets/ocupado.png" alt="Ocupada" class="icono-cuarto2">
+        <p>OCUPADA</p>
+    </li>
+
+    
+</ul>
+<button><a class="a-botones" href="/checkout">CHECK-OUT Y FACTURACIÓN</a></button>
+<Button><a class="a-botones" href="/checkin">NUEVA RESERVA</a></BUtton>
+            </div>
+            </div>
+            
+    </main>
+</div>
+</body>
+</html>

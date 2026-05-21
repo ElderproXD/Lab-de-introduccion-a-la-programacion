@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check-in</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/check-in.css')}}">
+</head>
+<body>
+    <div class="layout">
+        <nav class="sidebar">
+            <div class="logo">SISTEMA HOTEL</div>
+            <ul>
+                <li><a class="animacion" href="/panel">PANEL PRINCIPAL</a></li>
+                <li class="border"><a href="/checkin">CHECK-IN</a></li>
+                <li><a class="animacion" href="/directorio">DIRECTORIO</a></li>
+                <li><a class="animacion" href="/checkout">CHECK-OUT Y FACTURACIÓN</a></li>
+                <div class="borroso"></div>
+            </ul>
+        </nav>
+
+        <main class="main-content-reservaciones">
+            <h1>RESERVACIONES</h1>
+            <div id="border">
+                <div id="contenedor-dinamico-reservaciones">
+                    
+                    <form action="/nueva_reserva" method="POST" class="formulario-reservacion">
+                        
+                        <h3>DATOS DEL HUÉSPED</h3>
+                        <div class="seccion-inputs">
+                            <input type="text" name="nombre" placeholder="Nombre" required>
+                            <input type="text" name="apellido_p" placeholder="Apellido Paterno" required>
+                            <input type="text" name="apellido_m" placeholder="Apellido Materno" required>
+                            <input type="text" name="telefono" placeholder="Teléfono" required>
+                        </div>
+
+                        <h3>DATOS DE LA ESTANCIA</h3>
+                        <div class="seccion-estancia">
+                            <div class="campo">
+                                <label>FECHA DE ENTRADA</label>
+                                <input type="date" name="fecha_entrada" required>
+                            </div>
+
+                            <div class="campo">
+                                <label>FECHA DE SALIDA</label>
+                                <input type="date" name="fecha_salida" required>
+                            </div>
+
+                            <div class="campo">
+                                <label>TIPO DE HABITACIÓN</label>
+                                <select name="tipo_habitacion" id="select-tipo">
+                                    <option value="Sencilla">Sencilla</option>
+                                    <option value="Doble">Doble</option>
+                                    <option value="Suite">Suite</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <h3>SELECTOR DE HABITACIÓN DISPONIBLE</h3>
+                        <div class="seccion-habitacion">
+                            <select id="select-habitacion" name="id_habitacion" required>
+                                <option value="">-- Seleccione una habitación --</option>
+                                {% for hab in habitaciones %} <!-- llamamos las habitaciones-->
+                                    <option value="{{ hab['id'] }}">
+                                        Habitación {{ hab['id'] }} ({{ hab['tipo'] }}) - {{ hab['estatus'] }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="contenedor-boton">
+                            <button type="submit" id="btn-reserva" class="btn-reserva">NUEVA RESERVA</button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script> /*JavaScript jajaj */
+    const selectTipo = document.getElementById('select-tipo');  /*variableees */
+    const selectHabitacion = document.getElementById('select-habitacion');
+    const btnReserva = document.getElementById('btn-reserva');
+
+    // Función que va a la API de Python y actualiza los cuartos
+    function actualizarHabitaciones() {
+        const tipoSeleccionado = selectTipo.value;
+
+        // Hace la consulta en segundo plano 
+        fetch(`/api/habitaciones_disponibles?tipo=${tipoSeleccionado}`)
+            .then(response => response.json())
+            .then(habitaciones => {
+                selectHabitacion.innerHTML = ''; // Limpiamos los cuartos anteriores
+
+                if (habitaciones.length > 0) {
+                    // Si hay habitaciones disponibles de ese tipo, las metemos al select
+                    habitaciones.forEach(hab => {
+                        const option = document.createElement('option');
+                        option.value = hab.id;
+                        option.textContent = `Habitación ${hab.id} (${hab.tipo}) - Disponible`;
+                        selectHabitacion.appendChild(option);
+                    });
+                    
+                    // Activamos el botón por si estaba bloqueado aun que es muy raro que se bloque
+                    btnReserva.disabled = false;
+                    btnReserva.style.opacity = "1";
+                    btnReserva.style.cursor = "pointer";
+                } else {
+                    // Si está lleno ese tipo de cuarto
+                    const option = document.createElement('option');
+                    option.value = "";
+                    option.textContent = `❌ No hay habitaciones ${tipoSeleccionado}s disponibles`;
+                    option.disabled = true;
+                    option.selected = true;
+                    selectHabitacion.appendChild(option);
+
+                    // Bloqueamos el botón para que el recepcionista no mande un formulario vacío
+                    btnReserva.disabled = true;
+                    btnReserva.style.opacity = "0.5";
+                    btnReserva.style.cursor = "not-allowed";
+                }
+            })
+            .catch(error => console.error("Error jalando habitaciones:", error));
+    }
+
+    // Escuchar cuando el recepcionista mueva el select de Sencilla/Doble/Suite
+    selectTipo.addEventListener('change', actualizarHabitaciones);
+
+    // Disparar la función la primera vez que carga la página para que muestre las Sencillas por defecto
+    actualizarHabitaciones();
+    </script>
+</body>
+</html>

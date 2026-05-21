@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directorio</title>
+    <link rel="stylesheet" href="{{url_for ('static', filename='css/styles.css')}}">
+    <link rel="stylesheet" href="{{url_for ('static', filename='css/directorio.css')}}">
+</head>
+<body>
+    <div class="layout">
+        <nav class="sidebar">
+            <div class="logo">SISTEMA HOTEL</div>
+            <ul>
+                <li><a class="animacion" href="/panel">PANEL PRINCIPAL</a></li>
+                <li><a class="animacion" href="/checkin">CHECK-IN</a></li>
+                <li class="border"><a class="animacion" href="/directorio">DIRECTORIO</a></li>
+                <li><a class="animacion" href="/checkout">CHECK-OUT Y FACTURACIÓN</a></li>
+                <div class="borroso"></div>
+            </ul>
+        </nav>
+        
+        <main class="main-content-reservaciones">
+            <h1>GESTIÓN DE HUÉSPEDE</h1>
+            <div class="contenedor-directorio">
+
+                <form action="/directorio" method="GET" class="barra-busqueda">
+                    <input type="text" name="busqueda" placeholder="BUSCAR HUESPED POR NOMBRE O HABITACION" value="{{ busqueda }}">
+                    <button type="submit" class="btn-lupa">
+                        <svg width="25" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </form>
+
+                <div class="cuerpo-gestion">
+                    <table class="tabla-datos">
+                        <thead>
+                            <tr>
+                                <th>Nombre del Huésped</th>
+                                <th>Habitación</th>
+                                <th>Fecha de Ingreso</th>
+                                <th>Estatus</th>
+                            </tr>
+                        </thead>
+                       <tbody>
+    {% if busqueda %}
+        {% for huesped in huespedes %}
+        <tr>
+            <td>{{ huesped['nombre'] }} {{ huesped['apellido_p'] }} {{ huesped['apellido_m'] }}</td>
+            <td>{{ huesped['id_habitacion'] }}</td>
+            <td>{{ huesped['fecha_entrada'] }}</td>
+            <td>
+                <span class="status-activo">Hospedado</span>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="4" style="text-align: center; color: #000000; padding: 20px;text-shadow: none;">
+                No se encontraron huéspedes.
+            </td>
+        </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td colspan="4" style="text-align: center; color: #000000; padding: 30px; text-shadow: none;">
+                Escribe un nombre o número de habitación arriba para buscar al huésped.
+            </td>
+        </tr>
+    {% endif %}
+</tbody>
+                    </table>
+                    
+                    <div class="columna-acciones" id="contenedor-botones">
+                        </div>
+                </div>
+            </div>
+        </main>
+    </div> </body>
+</html>

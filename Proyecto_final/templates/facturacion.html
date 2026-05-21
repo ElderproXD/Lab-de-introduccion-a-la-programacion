@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facturación</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/facturacion.css')}}">
+</head>
+<body>
+    <div class="layout">
+    <nav class="sidebar">
+        <div class="logo">SISTEMA HOTEL</div>
+        <ul>
+            <li><a class="animacion" href="/panel">PANEL PRINCIPAL</a></li>
+            <li><a class="animacion" href="/checkin">CHECK-IN</a></li>
+            <li><a class="animacion" href="/directorio">DIRECTORIO</a></li>
+            <li class="border"><a href="/checkout">CHECK-OUT Y FACTURACIÓN</a></li>
+            <div class="borroso"></div>
+        </ul>
+    </nav>
+     <main class="main-content-reservaciones">
+        <h1>FACTURACIÓN</h1>
+         <div id="border">
+        <div id="contenedor-dinamico-reservaciones">
+            
+            <div class="seccion-busqueda2">
+                <form action="/checkout" method="GET">
+                    <input type="text" name="busqueda" placeholder="Ingrese # de habitación o Nombre del cliente..." value="{{ busqueda }}" required>
+                    <button type="submit"><p>BUSCAR CLIENTE</p></button>
+                </form>
+            </div>
+
+        {% if reserva %} <!-- checa que alla datos en al reseva -->
+        <div class="interfaz-facturacion">
+            
+            <div class="columna">
+                <div class="header-azul">DETALLES</div>
+                
+                <div class="campo">
+                    <label>NOMBRE:</label>
+                    <input type="text" value="{{ reserva['nombre'] }} {{ reserva['apellido_p'] }} {{ reserva['apellido_m'] }}" readonly>
+                </div> <!-- rellena cada campo nombre. fecha etc con los datos que le pasamos de la base de datos-->
+
+                <div class="campo">
+                    <label>HABITACIÓN:</label>
+                    <input type="text" class="input-corto" value="{{ reserva['id_habitacion'] }}" readonly>
+                </div>
+
+                <div class="campo-fila">
+                    <label>HOSPEDAJE:</label>
+                    <input type="text" class="input-mini" value="{{ reserva['fecha_entrada'] }} / {{ reserva['fecha_salida'] }}" readonly style="width: 140px;">
+                    <span>Total =</span>
+                    <input type="text" class="input-medio" value="${{ reserva['total_pagar'] }}" readonly>
+                </div>
+
+                <div class="campo">
+                    <label>IMPUESTOS:</label>
+                    <input type="text" class="input-corto" value="16%" readonly>
+                </div>
+
+                <div class="campo">
+                    <label>TOTAL:</label>
+                    <input type="text" class="input-medio" id="total" value="{{ reserva['total_pagar'] }}" readonly>
+                </div>
+            </div>
+
+            <div class="columna">
+                <div class="header-azul">PAGO</div>
+
+                <div class="campo">
+                    <label>TOTAL:</label>
+                    <input type="text" class="input-medio" value="${{ reserva['total_pagar'] }}" readonly>
+                </div>
+
+                <div class="campo">
+                    <label>DADO:</label>
+                    <input type="number" id="efectivo" placeholder="0.00$" step="0.01">
+                </div>
+
+                <div class="campo">
+                    <label>CAMBIO:</label>
+                    <input type="text" id="cambio" class="input-mini2" value="0.00$" readonly>
+                </div>
+
+                <form action="/finalizar_estancia" method="POST">
+                    <input type="hidden" name="id_reserva" value="{{ reserva['id_reserva'] }}">
+                    <input type="hidden" name="id_habitacion" value="{{ reserva['id_habitacion'] }}">
+                    <button type="submit" class="btn-finalizar">
+                        FINALIZAR ESTANCIA Y LIBERAR HABITACIÓN
+                    </button>
+                </form>
+            </div>
+
+        </div>
+        
+        {% elif busqueda %}
+            <div style="text-align: center; padding: 20px; color: #ffffff; text-shadow: none; margin-top: 100px; font-size: 2rem;">
+                No se encontró ninguna reservación activa que coincida con "{{ busqueda }}". <!--En caso de que no alla nada muestra este mensaje-->
+            </div>
+        {% else %}
+            <div style="text-align: center; padding: 40px; color: #ffffff; text-shadow: none; margin-top: 100px; font-size: 2rem;">
+                Busque una habitación o huésped para generar la cuenta de cobro.
+            </div>
+        {% endif %}
+        
+    </div>
+    </div>
+    </main>
+    </div>
+
+    <script> /*JavaScript solo para hacer los calculoooos de pago sencillos */
+        const inputPago = document.getElementById('efectivo');
+        const inputTotal = document.getElementById('total');
+        const inputCambio = document.getElementById('cambio');
+
+        if(inputPago && inputTotal) {
+            inputPago.addEventListener('input', () => {
+                const total = parseFloat(inputTotal.value) || 0;
+                const pago = parseFloat(inputPago.value) || 0;
+                if (pago >= total) {
+                    inputCambio.value = "$" + (pago - total).toFixed(2);
+                } else {
+                    inputCambio.value = "Falta dinero";
+                }
+            });
+        }
+    </script>
+</body>
+</html>
